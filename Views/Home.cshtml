@@ -5,8 +5,7 @@
 }
 
 @* the fun starts here *@
-
-<p>Content here staging first</p>
+<p>Content changes for Git</p>
 <section class="herobnr-sctn">
     <div class="Rt-banner is-covered">
         <picture>
@@ -38,31 +37,31 @@
                             <div class="flexspac-evenly">
                                 <div class="fThmb">
                                     <a href="#">
-                                        <span class="ficn"><img src="/common/images/icon-car.png" alt=""></span>
+                                        <span class="ficn"><img src="/common/images/icon-car.svg" alt=""></span>
                                         <span class="ftxt">select your vehicle</span>
                                     </a>
                                 </div>
                                 <div class="fThmb">
                                     <a href="#">
-                                        <span class="ficn"><img src="/common/images/icon-car2.png" alt=""></span>
+                                        <span class="ficn"><img src="/common/images/icon-car2.svg" alt=""></span>
                                         <span class="ftxt">configure your vehicle</span>
                                     </a>
                                 </div>
                                 <div class="fThmb">
                                     <a href="#">
-                                        <span class="ficn"><img src="/common/images/icon-car3.png" alt=""></span>
+                                        <span class="ficn"><img src="/common/images/icon-car3.svg" alt=""></span>
                                         <span class="ftxt">select your renault dealer</span>
                                     </a>
                                 </div>
                                 <div class="fThmb">
                                     <a href="#">
-                                        <span class="ficn"><img src="/common/images/icon-pay-card.png" alt=""></span>
+                                        <span class="ficn"><img src="/common/images/icon-car4.svg" alt=""></span>
                                         <span class="ftxt">pay the booking amount</span>
                                     </a>
                                 </div>
                             </div>
-                            <div class="bottombtn-bnr"><a href="javascript:void(0);"  id="btnbeginjourney" class="btnrtCmn"><em></em> begin your journey</a></div>
-                         
+                            <div class="bottombtn-bnr"><a href="javascript:void(0);" id="btnbeginjourney" class="btnrtCmn"><em></em> begin your journey</a></div>
+
                         </div>
                     </div>
                 </div>
@@ -70,11 +69,28 @@
         </div>
     </div>
 </section>
+<div class="cookie-popup">
+    <div class="cookieInr-popup">
+        <div class="cookieHeading">About cookies on this website</div>
+        <div class="cookieContent">
+            <p>By clicking on the "Accept" button you consent to the usage of 1st and 3rd party cookies (or similar) in order to enhance your overall web browsing experience, measure our audience, collect useful information to allow us and our partners to provide you with ads tailored to your interests. Learn more on our <a href="#" target="_blank">privacy notice</a> and set your preferences by clicking <a href="#">here</a> or at any time by clicking on the "Privacy settings" link on our website.</p>
+        </div>
+        <div class="cookieBtns">
+            <button class="btnrtCmn yellbtn">Accept</button>
+            <button class="btnrtCmn yellbtn">Close</button>
+        </div>
+    </div>
+</div>
 <script src="/myscript/home.js"></script>
 <script>
     $(document).ready(function () {
         $("#btnbeginjourney").click(function myfunction() {
             window.location = "select-my-location";
+        });
+        $(".cookieBtns button").click(function () {
+
+            $(".cookie-popup").fadeOut();
+
         });
     });
 </script>
