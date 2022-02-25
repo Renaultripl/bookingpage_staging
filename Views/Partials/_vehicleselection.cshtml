@@ -1,0 +1,30 @@
+﻿@inherits UmbracoViewPage<VehicleSelectorViewModel>
+
+@{
+    foreach (var list in Model.carlist)
+    {
+
+        <div class="row">
+            <div class="column">
+                <span>@list.car_name</span>
+            </div>
+            <div class="column">
+                <img src="/carimages/@list.car_image"  alt="Nature" onclick="myFunction(@list.car_id);">
+            </div>
+
+            <div class="column">
+                Range Starts &#64;INR <span>@list.exshowroom_price</span>
+            </div>
+
+        </div>
+        @*<div class="item" data-id="@m.Value.Split('|')[0]" data-variant="0">
+                <div class="imgcon">
+                    <span id="em_3">@m.Text</span>
+                    @Html.Raw(@m.Value.Split('|')[3])
+                    <img src="common/images/@m.Value.Split('|')[1]">
+
+                </div>
+                <input type="hidden" id="hdfvehicleId_@m.Value.Split('|')[0]" value=@m.Value.Split('|')[2] />
+            </div>*@
+    }
+}

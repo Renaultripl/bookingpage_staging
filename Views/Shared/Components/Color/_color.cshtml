@@ -1,0 +1,64 @@
+﻿@model VehicleConfiguratorViewModel
+
+@{ int i = 0;}
+@foreach (var item in Model.ColorList)
+{
+    string rdbchecked = "", activeclass = "";
+    @if (Model.selected_color_id == 0 && i == 0)
+    {
+        rdbchecked = "checked";
+        activeclass = "active";
+    }
+    else if (Model.selected_color_id == item.color_id)
+    {
+        rdbchecked = "checked";
+        activeclass = "active";
+    }
+    else
+    {
+        rdbchecked = "";
+    }
+    <li class="label-flex @activeclass">
+        <div class="labelflex-left @activeclass" data-color=@item.color_name data-srcs="/carimages/@item.ColorCarImage">
+            <label class="checkbx-lab">
+                <input type="radio" id="rdbcolor_@item.color_id" value="@item.color_id" name="rdbcolorlist" @rdbchecked><span class="radi"></span>
+                <div class="option_select">
+                    <h3>@item.color_name</h3>
+                    <!-- <b>Lorem ipsum dolor sit amet.</b> -->
+                </div>
+            </label>
+        </div>
+        <div class="labelflex-right">
+            <div style="background-color: #@item.color_code;"></div>
+        </div>
+    </li>
+
+    i++;
+}
+
+
+@*<div class="custom-control custom-radio" id="Color">
+        <h3>Color</h3>
+        @{ int i = 0;}
+        @foreach (var item in Model.ColorList)
+        {
+
+            @if (Model.selected_color_id == 0 && i == 0)
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.color_id" value="@item.color_id" name="rdbcolorlist" checked>
+                <label class="custom-control-label" for="defaultChecked">@item.color_name</label>
+            }
+            else if (Model.selected_color_id == item.color_id)
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.color_id" value="@item.color_id" name="rdbcolorlist" checked>
+                <label class="custom-control-label" for="defaultChecked">@item.color_name</label>
+            }
+            else
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.color_id" value="@item.color_id" name="rdbcolorlist">
+                <label class="custom-control-label" for="defaultChecked">@item.color_name</label>
+            }
+            i++;
+        }
+    </div>*@
+<input asp-for="@Model.selected_color_id" type="hidden" />

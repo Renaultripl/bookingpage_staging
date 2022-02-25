@@ -1,0 +1,36 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LocationSelector>
+@{
+    Layout = "RenaultMaster.cshtml";
+}
+<section class="herobnr-sctn">
+    <div class="Rt-banner is-covered">
+        <picture>
+            <source media="(max-width: 767px)" srcset="/common/images/img-mobile-banner.jpg" type="image/webp">
+            <source media="(max-width: 767px)" srcset="/common/images/img-mobile-banner.jpg" type="image/jpeg">
+            <source media="(max-width: 991px)" srcset="/common/images/img-mobile-banner.jpg" type="image/webp">
+            <source media="(max-width: 991px)" srcset="/common/images/img-mobile-banner.jpg" type="image/jpeg">
+            <source srcset="/common/images/hero-banner1.jpg" type="image/webp">
+            <img data-aos="fade-in" src="/common/images/hero-banner1.jpg" alt="" />
+        </picture>
+        <div class="full-bnr-cpnt">
+            <a href="#" class="fullBnt-link"></a>
+            <div class="full-bnr-cpntin">
+                <div class="containerRt">
+                    <div class="cmpnt-blk side-cmpnt2 Vmiddle Vtop-mobile">
+                        <div class="select-yrChoice">
+                            @{
+                                @(await Component.InvokeAsync("StateCityList"))
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script src="/myscript/locationselector.js"></script>
+
+
+

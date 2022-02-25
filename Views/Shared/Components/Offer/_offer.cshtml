@@ -1,0 +1,13 @@
+﻿@model OfferViewModel
+<div class="step2_offerinr">
+    <div class="step2_offerinr-left">
+        <span>Offers :</span>
+        @foreach (var item in Model.offerlist)
+        {
+            <em>@item.offer_details</em>
+        }
+    </div>
+    <div class="step2_offerinr-right">
+        <a href="javascript:void(0);"><img src="/common/images/offer-cross.png"></a>
+    </div>
+</div>

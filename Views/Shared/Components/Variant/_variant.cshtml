@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model VehicleConfiguratorViewModel
+@{ int i = 0;}
+
+@foreach (var item in Model.VariantList)
+{
+    string rdbchecked = "", activeclass = "";
+@if (Model.selected_varinat_id == 0 && i == 0)
+    {
+        rdbchecked = "checked";
+ activeclass = "active";
+    }
+    else if (Model.selected_varinat_id == item.variant_id)
+    {
+        rdbchecked = "checked";
+ activeclass = "active";
+    }
+    else
+    {
+        rdbchecked = "";
+    }
+<li class="@activeclass">
+    <label class="checkbx-lab">
+        <input type="radio" id="rdbvarinat_@item.variant_id" value="@item.variant_id" name="rdbvariantlist" @rdbchecked data-name="@item.variant_name"><span class="radi"></span>
+        <div class="option_select">
+            <h3>@item.variant_name</h3>
+            @*<b>Lorem ipsum dolor sit amet.</b>*@
+        </div>
+    </label>
+</li>
+    i++;
+}
+
+@*<div class="custom-control custom-radio" id="Variant">
+        <h3>Variant</h3>
+        @{ int i = 0;}
+        @foreach (var item in Model.VariantList)
+        {
+            @if (Model.selected_varinat_id == 0 && i == 0)
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.variant_id" value="@item.variant_id" name="rdbvariantlist" checked>
+                <label class="custom-control-label" for="defaultChecked">@item.variant_name</label>
+            }
+            else if (Model.selected_varinat_id == item.variant_id)
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.variant_id" value="@item.variant_id" name="rdbvariantlist" checked>
+                <label class="custom-control-label" for="defaultChecked">@item.variant_name</label>
+            }
+            else
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.variant_id" value="@item.variant_id" name="rdbvariantlist">
+                <label class="custom-control-label" for="defaultChecked">@item.variant_name</label>
+            }
+            i++;
+        }
+    </div>*@
+<input asp-for="@Model.selected_varinat_id" type="hidden" />

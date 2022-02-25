@@ -1,0 +1,344 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Registration>
+
+@{
+    Layout = "RenaultWithoutSiconMaster.cshtml";
+    //var modelData = Model.DescendantsOrSelf().OfType<Registration>().FirstOrDefault();
+
+    <style>
+        .disabled {
+            pointer-events: none;
+            cursor: default;
+            opacity: 0.6;
+        }
+
+        .whiteBtn.otpbtn {
+            padding: 9px 5px;
+            min-width: auto;
+            width: 100%;
+        }
+    </style>
+}
+<section>
+    <div class="steps-container">
+        <div class="containerRt">
+            <div class="container-inr">
+                <div class="steps-list">
+                    <ul>
+                        <li class="active complt">
+                            <div class="steps_blocks">
+                                <!-- <span>1</span> -->
+                                <p>Explore Cars</p>
+                            </div>
+                        </li>
+                        <li class="active complt">
+                            <div class="steps_blocks">
+                                <!-- <span>2</span> -->
+                                <p>Configure car</p>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <div class="steps_blocks">
+                                <!-- <span>3</span> -->
+                                <p>Personal/ dealer Info</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>4</span> -->
+                                <p>Preview</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="srvBookingFrmMn">
+    <div class="">
+        <div class="containerRt">
+            <div class="srvBookingFrm">
+                <div class="srvBookingFrm-in">
+                    <div class="full-top topBarflex full-topOptn2">
+                        <div class="backPg"><a href="/vehicle-configurator"><span></span> Back</a></div>
+                        @(await Component.InvokeAsync("RegistrationCarNameImgVarinat"))
+                        @*<div class="lftNme">
+                                <h1 class="heading1">KIGER <em>(RXL-EASY-R-1-L-ENERGY)</em></h1>
+                                <div class="subHd-txt">Sporty smart stuning</div>
+                            </div>*@
+                        @*<div class="imgbRt">
+                                <picture>
+                                    <source media="(max-width: 767px)" srcset="/common/images/kiger-lft.jpg" type="image/webp">
+                                    <source media="(max-width: 767px)" srcset="/common/images/kiger-lft.jpg" type="image/jpeg">
+                                    <source srcset="/common/images/kiger-lft.jpg" type="image/webp">
+                                    <img data-aos="fade-in" src="/common/images/kiger-lft.jpg" alt="" />
+                                </picture>
+                            </div>*@
+                    </div>
+                    <div class="lft-form">
+                        <div class="lft-formin">
+
+                        </div>
+                    </div>
+                    <form id="registrationForm" method="POST">
+                        @Html.AntiForgeryToken()
+                        <div class="right-form1">
+                            <div class="right-form1-in">
+                                <h3 class="heading3">@Model.PersonalInformation</h3>
+                                <div class="containerRt-row">
+                                    <input type="hidden" id="cust" name="cust" />
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.FirstName <sup>*</sup></label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="first_name" name="first_name" maxlength="200" tabindex="1" autocomplete="no" />
+                                            <div id="firstnameReq" class="errorRt" data-msg="@Model.FirstNameRequired"></div>
+                                            <div id="firstnamefmt" class="errorRt" data-msg="@Model.FirstNameFormat"></div>
+                                            @*@Html.ValidationMessage("first_name","Valid", new { @class= "errorRt" })*@
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.MiddleName </label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="middlename" name="middlename" maxlength="200" tabindex="2" autocomplete="no" />
+                                            <div id="middlenamefmt" for="middlename" class="errorRt" data-msg="@Model.MiddleNameFormat"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.LastName <sup>*</sup></label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="lastname" name="lastname" maxlength="200" tabindex="3" autocomplete="no" />
+                                            <span id="lastnameReq" for="lastname" class="errorRt" data-msg="@Model.LastNameRequired"></span>
+                                            <span id="lastnamefmt" for="lastname" class="errorRt" data-msg="@Model.LastNameFormat"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="cmnformRows cmnformRows2">
+                                        <div class="labTxt"><label>@Model.MobileNumber <sup>*</sup></label></div>
+                                        <div class="multifld">
+                                            <div class="inptfld">
+                                                <input type="text" id="mobile" name="mobile" maxlength="10" tabindex="4" autocomplete="no" onkeyup="if(/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" />
+                                                <span id="mobileReq" for="mobile" class="errorRt" data-msg="@Model.MobileNumberRequired"></span>
+                                                <span id="mobileformat" for="mobile" class="errorRt" data-msg="@Model.MobileNumberFormat"></span>
+                                                <span id="otpsentmsg" class="errorRt" style="display:none;"></span>
+                                            </div>
+                                            <div class="frmritTxt"><button type="button" id="mobileAuth" class="btnrtCmn whiteBtn otpbtn disabled" tabindex="5">@Model.SendOtp</button></div>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="cmnformRows cmnformRows2">
+                                            <div class="labTxt"><label>@Model.OTP <sup>*</sup></label></div>
+                                            <div class="multifld">
+                                                <div class="inptfld">
+                                                    <input type="text" id="optHere" name="optHere" maxlength="6" tabindex="6" autocomplete="no" readonly />
+                                                    <div id="otpReq" class="errorRt" data-msg="@Model.OtpRequired"></div>
+                                                    <div id="otpFormat" class="errorRt" data-msg="@Model.OtpFormat"></div>
+                                                    <div id="otpresentmsg" class="errorRt" style="display:none;"></div>
+                                                </div>
+                                                <div class="frmritTxt">
+                                                    <a href="javascript:void(0);" id="userauthresend" class="disabled">@Model.ReSendOtp</a>
+                                                    <span id="resendtimer" style="font-weight:bold"></span>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="cmnformRows cmnformRows2">
+                                        <div class="labTxt"><label>@Model.EmailId <sup>*</sup></label></div>
+                                        <div class="multifld">
+                                            <div class="inptfld">
+                                                <input type="text" id="email" name="email" maxlength="200" tabindex="7" autocomplete="no" />
+                                                <span id="emailReq" class="errorRt" data-msg="@Model.EmailIdRequired"></span>
+                                                <span id="emailformat" class="errorRt" data-msg="@Model.EmailIdFormat"></span>
+                                            </div>
+                                            <div class="frmritTxt"><button type="button" id="mailAuth" class="btnrtCmn whiteBtn otpbtn" tabindex="5">@Model.SendOtp</button></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.Pincode <sup>*</sup></label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="pincode" name="pincode" maxlength="6" tabindex="11" autocomplete="no" onkeyup="if(/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+                                            <span id="pincodeReq" class="errorRt" data-msg="@Model.PincodeRequired"></span>
+                                            <span id="pincodeFmt" class="errorRt" data-msg="@Model.PincodeFormat"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.CustFlatHouse <sup>*</sup></label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="flatHouse" name="flatHouse" maxlength="500" tabindex="8" autocomplete="no" />
+                                            <span id="flatHouseReq" class="errorRt" data-msg="@Model.CustFlatHouseRequired"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.CustBuildingStreet <sup>*</sup></label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="buildingstreet" name="buildingstreet" maxlength="500" tabindex="9" autocomplete="no" />
+                                            <span id="buildingstreetReq" class="errorRt" data-msg="@Model.CustBuildingStreetRequired"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.Landmark <sup>*</sup></label></div>
+                                        <div class="inptfld">
+                                            <input type="text" id="landmark" name="landmark" maxlength="200" tabindex="10" autocomplete="no">
+                                            <span id="landmarkReq" class="errorRt" data-msg="@Model.LandmarkRequired"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.CustState <sup>*</sup></label></div>
+                                        <div class="selectFrm">
+                                            <select name='state' id="state" tabindex="12" class="js-example-basic-single">
+                                            </select>
+                                            <span id="stateReq" class="errorRt" data-msg="@Model.StateRequired"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.CustCity <sup>*</sup></label></div>
+                                        <div class="selectFrm">
+                                            <select name="city" id="city" tabindex="13" class="js-example-basic-single">
+                                            </select>
+                                            <span id="cityReq" class="errorRt" data-msg="@Model.CityRequired"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.Area <sup>*</sup></label></div>
+                                        <div class="selectFrm">
+                                            <select name="area" id="area" tabindex="14" class="js-example-basic-single">
+                                            </select>
+                                            <span id="areaReq" class="errorRt" data-msg="@Model.AreaRequired"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-form2">
+                            <div class="right-form2-in">
+                                <h3 class="heading3">@Model.DealerInformation</h3>
+                                <div class="containerRt-row">
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.DealerState <sup>*</sup></label></div>
+                                        <div class="selectFrm">
+                                            <select name="dealerstate" id="dealerstate" tabindex="15" class="js-example-basic-single">
+                                                <option disabled selected> select dealer state</option>
+                                            </select>
+                                            <span id="dealerstateReq" class="errorRt" data-msg="@Model.DealerStateRequired"></span>
+                                        </div>
+                                    </div>
+                                    <div class="cmnformRows">
+                                        <div class="labTxt"><label>@Model.DealerCity <sup>*</sup></label></div>
+                                        <div class="selectFrm">
+                                            <select name="dealercity" id="dealercity" tabindex="16" class="js-example-basic-single">
+                                                <option disabled selected> select dealer city</option>
+                                            </select>
+                                            <span id="dealercityReq" class="errorRt" data-msg="@Model.DealerCityRequired"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 class="heading3">@Model.SelectAdealer</h3>
+                                <div class="fullRowrt">
+                                    <div class="need-hlptxt">
+                                        <p>@Model.CustomerCareTitle <b>@Model.CustomerCareNumber</b></p>
+                                        <a href="tel:@Model.CustomerCareNumber" class="mobnmbrTll"><img src="/common/images/icon-phone.png" alt=""></a>
+                                    </div>
+                                </div>
+
+                                <div id="partial" class="containerRt-row">
+                                </div>
+                                <span id="dealer" class="errorRt" data-msg="@Model.DealerCityRequired"></span>
+
+                                <div class="fullRowrt">
+                                    <label class="checkbx-lab">
+                                        <input type="checkbox" id="consent" name="consent" tabindex="18" />
+                                        <span class="checkd"></span>
+                                        <b>@Model.Consent</b>
+                                    </label>
+                                    <span id="consentReq" class="errorRt" data-msg="@Model.ConsentRequired"></span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    @*call footer view component*@
+    <div class="steps2_section">
+        <div class="step2_second">
+            <div class="step2_secondinr">
+                <div class="step2_secondbtm">
+                    <div class="step2_secondbtm_inr">
+                        <div class="step2_secondbtm_left">
+                            @(await Component.InvokeAsync("BookingExShowroomPrice"))
+                        </div>
+                        <div class="step2_secondbtm_right">
+                            <div class="step2_secondbtm_leftinfo"><em class="sumpopup"><img src="/common/images/offer-info.png"></em></div>
+                            <div class="step2_secondbtm_leftbtn">
+                                <button class="btnrtCmn yellbtn" type="submit" name="Registration" id="Registration" tabindex="18">@Model.SubmitButtonTitle</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*@(await Component.InvokeAsync("Footer"))*@
+    @*end call footer view component*@
+</section>
+
+@*<div class="mapframe" id="mapbx">
+        <div id="map" style="height:500px"></div>
+    </div>*@
+
+
+<div class="overlyPP otpMnpp" id="mobileOtp">
+    <div class="whiteBxrt otpppin">
+        <span class="clspp"><img src="/images/closemdpopup.png"></span>
+        <h5 class="heading5">One Time Password has been shared to your mobile number ending with ****** 6856</h5>
+        <div class="cmnformRows otptype">
+            <input class="otptxtbx" id="mobOtpdigit1" data-next="mobOtpdigit2" type="text" name="mobOtpdigit1" maxlength="1">
+            <input class="otptxtbx" id="mobOtpdigit2" data-next="mobOtpdigit3" data-previous="mobOtpdigit1" type="text" name="mobOtpdigit2" maxlength="1">
+            <input class="otptxtbx" id="mobOtpdigit3" data-next="mobOtpdigit4" data-previous="mobOtpdigit2" type="text" name="mobOtpdigit3" maxlength="1">
+            <input class="otptxtbx" id="mobOtpdigit4" data-previous="mobOtpdigit3" type="text" name="mobOtpdigit4" maxlength="1">
+        </div>
+        <div class="cmnformRows btmrow">
+            <button class="btnrtCmn yellbtn" id="submit-mb-top-btn" disabled>Submit OTP Now</button>
+            <a href="javascript:void(0);" id="mobileReAuth" name="mobileReAuth" class="resend-link">Resend OTP</a>
+            @*<button type="button" id="mobileReAuth" name="mobileReAuth" class="resend-link">Resend OTP</button>*@
+        </div>
+    </div>
+</div>
+<div class="overlyPP otpMnpp" id="emailOtp">
+    <div class="whiteBxrt otpppin">
+        <span class="clspp"><img src="/images/closemdpopup.png"></span>
+        <h5 class="heading5"> One Time Password has been shared to your email ID ya*****gmai.com</h5>
+        <div class="cmnformRows otptype">
+            <input class="otptxtbx" id="mailOtpdigit1" data-next="mailOtpdigit2" type="text" name="mailOtpdigit1" maxlength="1">
+            <input class="otptxtbx" id="mailOtpdigit2" data-next="mailOtpdigit3" data-previous="mailOtpdigit1" type="text" name="mailOtpdigit2" maxlength="1">
+            <input class="otptxtbx" id="mailOtpdigit3" data-next="mailOtpdigit4" data-previous="mailOtpdigit2" type="text" name="mailOtpdigit3" maxlength="1">
+            <input class="otptxtbx" id="mailOtpdigit4" data-previous="mailOtpdigit3" type="text" name="mailOtpdigit4" maxlength="1">
+        </div>
+        <div class="cmnformRows btmrow">
+            <button class="btnrtCmn yellbtn" id="submit-em-top-btn" disabled>Submit OTP Now</button>
+            <a href="javascript:void(0);" id="mailReAuth" name="mailReAuth" class="resend-link">Resend OTP</a>
+            @*<button type="button" id="mailReAuth" name="mailReAuth" class="resend-link">Resend OTP</button>*@
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+    <script src="/common/js/Form-Validation.js"></script>
+    <script src="/myscript/Registration.js"></script>
+    <script src="/myscript/summary.js"></script>
+    @*@{
+                <partial name="_ValidationScriptsPartial" />
+        }*@
+}
+
+

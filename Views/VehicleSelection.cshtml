@@ -1,0 +1,53 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = "RenaultWithoutSiconMaster.cshtml";
+}
+<section>
+    <div class="steps-container">
+        <div class="containerRt">
+            <div class="container-inr">
+                <div class="steps-list">
+                    <ul>
+                        <li class="active">
+                            <div class="steps_blocks">
+                                <!-- <span>1</span> -->
+                                <p>Explore Cars</p>
+                            </div>
+                        </li>
+                        <li class="">
+                            <div class="steps_blocks">
+                                <!-- <span>2</span> -->
+                                <p>
+                                    Configure
+                                    car
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>3</span> -->
+                                <p>
+                                    Personal/
+                                    dealer Info
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>4</span> -->
+                                <p>Preview</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="msgloader"><div class="msgloaderinr"><img src="/common/images/fancybox_loading.gif" /></div></div>
+@(await Component.InvokeAsync("VehicleSelection"))
+
+@section Scripts {
+    <script src="~/myscript/vehicleselection.js"></script>
+}

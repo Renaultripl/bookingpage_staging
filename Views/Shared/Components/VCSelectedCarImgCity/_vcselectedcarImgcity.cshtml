@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model VehicleConfiguratorViewModel;
+
+
+<div class="hsubhead-flex">
+    <div class="hsubhead-flex-left">
+        <h2>@Model.selected_car_name <em id="lblEngineTransVariant">(@Model.selected_variant)</em></h2>
+        <h3>@Model.car_heading</h3>
+    </div>
+    <div class="hsubhead-flex-right">
+        <div class="edit-city">
+            <p>@Model.selected_city_name<span><img src="common/images/edit-btn.png"></span></p>
+        </div>
+    </div>
+</div>
+<div class="step2cars_img">
+    @if (@Model.car_image == "")
+    {
+        <img src="/carimages/@Model.selected_car_image">
+    }
+    else
+    {
+        <img src="/carimages/@Model.car_image">
+    }
+    @*<img src="/carimages/@Model.selected_car_image" />*@
+</div>
+
+

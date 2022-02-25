@@ -1,0 +1,30 @@
+﻿@*@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<LocationSelectorView2Model>*@
+@model LocationSelectorView2Model
+<h1>
+    jkhkjkhjkhjk
+</h1>
+    <form asp-action="LocationSelector" asp-controller="Home" method="post">
+        <div class="form_row">
+            <div class="form_colm50">
+                <div class="lable">Select State</div>
+                <div class="formfild">
+                    <select asp-for="State" class="form-control" asp-items="@(new SelectList(Model.States,"Value", "Text"))">
+                        <option disabled selected> Select State</option>
+                    </select>
+                    <span id="state_error" asp-validation-for="State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form_colm50">
+                <div class="lable">Select city</div>
+                <div class="formfild">
+                    <select asp-for="City" asp-items="Model.Cities"><option disabled selected> Select City</option></select>
+                    @*<select id="City">
+                        </select>*@
+                    <span id="city_error" asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <input type="submit" id="btnnext" name="name" value="Proced to Vechicle Selection" />
+        </div>
+    </form>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="/myscript/locationselector.js"></script>

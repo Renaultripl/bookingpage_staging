@@ -1,0 +1,67 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model VehicleConfiguratorViewModel
+
+<ul id="Engine">
+
+    @{ int i = 0;}
+    @foreach (var item in Model.EngineList)
+    {
+        string rdbchecked = "", activeclass = "";
+        @if (Model.selected_engine_id == 0 && i == 0)
+        {
+            rdbchecked = "checked";
+            activeclass = "active";
+        }
+        else if (Model.selected_engine_id == item.EngineId)
+        {
+            rdbchecked = "checked";
+            activeclass = "active";
+        }
+        else
+        {
+            rdbchecked = "";
+        }
+        <li class="@activeclass">
+            <label class="checkbx-lab">
+                <input type="radio" id="rdbengine_@item.EngineId" value="@item.EngineId" name="rdbenginetypelist" @rdbchecked><span class="radi"></span>
+                <div class="option_select">
+                    <h3>@item.EngineTypeName</h3>
+                    @*<b>Lorem ipsum dolor sit amet.</b>*@
+                </div>
+            </label>
+        </li>
+        i++;
+    }
+</ul>
+
+@*<div class="custom-control custom-radio" id="Engine">
+
+        @{ int i = 0;}
+        @foreach (var item in Model.EngineList)
+        {
+
+            @if (Model.selected_engine_id == 0 && i == 0)
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.EngineId" value="@item.EngineId" name="rdbenginetypelist" checked>
+                <label class="custom-control-label" for="defaultChecked">@item.EngineTypeName</label>
+            }
+            else if (Model.selected_engine_id == item.EngineId)
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.EngineId" value="@item.EngineId" name="rdbenginetypelist" checked>
+                <label class="custom-control-label" for="defaultChecked">@item.EngineTypeName</label>
+            }
+            else
+            {
+                <input type="radio" class="custom-control-input" id="rdbcolor_@item.EngineId" value="@item.EngineId" name="rdbenginetypelist">
+                <label class="custom-control-label" for="defaultChecked">@item.EngineTypeName</label>
+            }
+            i++;
+        }
+    </div>*@
+
+<input asp-for="@Model.selected_engine_id" type="hidden" />
+

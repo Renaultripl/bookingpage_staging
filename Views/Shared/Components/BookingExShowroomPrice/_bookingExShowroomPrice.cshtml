@@ -1,0 +1,27 @@
+﻿@using RenaultPortal.Models;
+@{var indianCulture = new System.Globalization.CultureInfo("hi-IN"); }
+@model PriceMasterViaVariantCar
+<p>
+    Booking Amount:
+    <span>
+        ₹ @string.Format(indianCulture, "{0:N0}", @Model.booking_amount)
+    </span>
+</p>
+<p>
+    Ex - Showroom:
+    <span>
+        ₹ @string.Format(indianCulture, "{0:N0}", @Model.exshowroom_price)
+    </span>
+</p>
+
+@*<div id="BookingExShowroomPrice">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>Booking Amount: </li>
+                @item.booking_amount
+                <li>Exshowroom Price:</li>
+                @item.exshowroom_price
+            }
+        </ul>
+    </div>*@

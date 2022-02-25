@@ -1,0 +1,48 @@
+﻿@model VehicleSelectorViewModel;
+<section>
+    <div class="steps_colmn">
+        <div class="containerRt">
+            <div class="conteiner-inr">
+                <div class="steps2_clmcarsTop">
+                    <form asp-action="vehicleselection" asp-controller="Home" method="post">
+                        <div class="steps_colmcars">
+                            @{
+                                foreach (var list in Model.carlist)
+                                {
+                                    //string cssclass = "";
+                                    //if (list.car_id == Model.selected_car_id)
+                                    //{
+                                    //    cssclass = "active";
+                                    //}
+                                    <div class="steps_rows">
+                                        <div class="steps_cars">
+                                            <div class="steps_cars_inr">
+                                            </div>
+                                            <div class="steps_carsbtn imgcarimg" data-id="@list.car_id" data-val="@list.car_name" data-img="@list.car_image"><a href="javascript:void(0);"><span>Configure</span></a></div>
+                                            <div class="steps_carsinfo">
+                                                <h2>@list.car_name</h2>
+                                                <div class="steps_carimg">
+                                                    @*<img src="common/images/triber.png">*@
+                                                    <img src="/carimages/@list.car_image">
+                                                </div>
+                                                <h3>
+                                                    <p>Range starts &#64;</p>
+                                                    @{var indianCulture = new System.Globalization.CultureInfo("hi-IN"); }
+                                                    <span> ₹ @string.Format(indianCulture, "{0:N0}", @list.exshowroom_price)</span>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                @*<input type="submit" id="btnvehicleselection" name="name" value="Proceed" />*@
+                            }
+                        </div>
+                        <input asp-for="@Model.selected_car_id" type="hidden" />
+                        <input asp-for="@Model.selected_car_name" type="hidden" />
+                        <input asp-for="@Model.selected_car_image" type="hidden" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

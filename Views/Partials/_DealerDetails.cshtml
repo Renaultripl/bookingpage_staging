@@ -1,0 +1,27 @@
+﻿@model DealerDetailsModel
+
+@foreach (var dealer in Model.dealerDetails)
+{
+	<div class="dealerBx">
+		<h5 class="heading5">@dealer.dealer_name</h5>
+		<div class="addres">@dealer.dealer_address, @dealer.city - @dealer.postal_code</div>
+
+		<div class="buttnsDv">
+			<a href="dealer-locator?lat=51.508742&long=-0.120850" class="btnrtCmn whiteBtn mapBtn">View on Map</a>
+			<label class="checkbx-lab btnChkbx btnrtCmn">
+				@if (dealer.dealerid.ToString() == Model.selecteddealerid)
+				{
+					<input type="radio" name="dealerid" id="dealerid" value="@dealer.dealerid" checked />
+				}
+				else
+				{
+					<input type="radio" name="dealerid" id="dealerid" value="@dealer.dealerid" />
+				}
+				<span class="radi"></span> <b>Select dealer</b>
+			</label>
+		</div>
+	</div>
+}
+
+
+

@@ -1,0 +1,43 @@
+﻿@model VehicleConfiguratorViewModel
+@{ int i = 0;}
+@foreach (var item in Model.ColorList)
+{
+    @if (Model.selected_color_id == 0 && i == 0)
+    {
+        <p>Paint: <span>@item.color_name</span></p>
+    }
+    else if (Model.selected_color_id == item.color_id)
+    {
+        <p>Paint: <span>@item.color_name</span></p>
+    }
+    i++;
+}
+@{ i = 0;}
+<ul>
+    @foreach (var item in Model.ColorList)
+    {
+        string rdbchecked = "";
+        @if (Model.selected_color_id == 0 && i == 0)
+        {
+            rdbchecked = "active";
+        }
+        else if (Model.selected_color_id == item.color_id)
+        {
+            rdbchecked = "active";
+        }
+        else
+        {
+            rdbchecked = "";
+        }
+        <li>
+            <a href="javascript:void(0);"
+               class="@rdbchecked"
+               title="@item.color_name"
+               style="background-color: #@item.color_code"
+               data-title="@item.color_name"
+               data-src="/carimages/@item.ColorCarImage"
+               data-value="@item.color_id"></a>
+        </li>
+        i++;
+    }
+</ul>

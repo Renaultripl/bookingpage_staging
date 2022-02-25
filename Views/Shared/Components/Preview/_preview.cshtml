@@ -1,0 +1,135 @@
+﻿@model PreviewViewModel;    
+    <section id="previewsection">
+        <div class="preview-sec">
+            <div class="containerRt">
+                <div class="container-inr">
+                    <div class="backPg"><a href="/my-info/registration"><span></span> Back</a></div>
+                    <div class="step2cars_img prevImg">
+                        <div class="socialShr">
+                            <div class="shrIcn"><img src="/common/images/share-icon.png" alt=""></div>
+                            <div class="socialrt" style="display: none;">
+                                <ul>
+                                    <li class="whatsapp"><a href="" target="_blank"><img src="/common/images/icon-whatsapp.svg"> Share on WhatsApp</a></li>
+                                    <li class="fb"><a href="" target="_blank"><img src="/common/images/mail-icon.png" target="_blank">Share via Email </a></li>
+                                    <li class="linkd"><a href="" target="_blank"><img src="/common/images/download-icon.png">PDF Download </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        @if (Model.ColorwiaseCarImage != "")
+                        {
+                            <img src="/carimages/@Model.ColorwiaseCarImage">
+                        }
+                        else
+                        {
+                            <img src="/carimages/@Model.SelectedDefaultCarImage">
+                        }
+                        <div class="prevImgBlock">
+                            <h2>@Model.SelectedCarName</h2>
+                            <h3>@Model.CarHeadingName</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="prev-btm">
+            <div class="containerRt">
+                <div class="container-inr">
+                    <div class="prevFlex">
+                        <div class="vehicleInfo cmnInfo">
+                            <h3><span>Vehicle Information</span><a href="javascript:void(0);" id="btnvehicleinformation"><img src="/common/images/edit-btn.png"></a></h3>
+                            <div class="vehicleInfo-prices">
+                                <div class="vrAmnt">
+                                    @(await Component.InvokeAsync("BookingExShowroomPrice"))
+                                </div>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Powertrain</p>
+                                        <h4>Engine: @Model.Engine | Transimission: @Model.Transimission</h4>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Variant</p>
+                                        <h4>@Model.Varinat</h4>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Color</p>
+                                        <h4>@Model.Color <div class="sds"></div></h4>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="personalInfo cmnInfo">
+                            <h3><span>Personal Information</span><a href="javascript:void(0);" id="btnpersonalinformation"><img src="/common/images/edit-btn.png"></a></h3>
+                            <ul>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Name</p>
+                                        <h4>@Model.FullName</h4>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Mobile</p>
+                                        <h4>@Model.MobileNumber</h4>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Email</p>
+                                        <h4>@Model.Email</h4>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>Address</p>
+                                        <h4>@Model.Address</h4>
+                                    </div>
+
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>City</p>
+                                        <h4>@Model.City</h4>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>State</p>
+                                        <h4>@Model.State</h4>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="dealerInfo cmnInfo">
+                            <h3><span>Dealer Information</span><a href="javascript:void(0);" id="btndealerinformation"><img src="/common/images/edit-btn.png"></a></h3>
+                            <ul>
+                                <li>
+                                    <div class="sumLeft">
+                                        <p>@Model.DealerName</p>
+                                        <h4>@Model.DealerAddress</h4>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offerProceed">
+            <div class="offerProceedbtn">
+                <button class="cmnBtnSumbmit cmnBtncs"><div class="Button__content">Proceed to pay ₹ @Model.BookingAmount</div></button>
+            </div>
+        </div>
+    </section>

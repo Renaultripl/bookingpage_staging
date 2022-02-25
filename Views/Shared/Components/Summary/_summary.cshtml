@@ -1,0 +1,99 @@
+﻿@model SummaryViewModel
+<div class="summaryInrs">
+    <div class="opensctm_Block">
+        <div class="openscstm_inr">
+            <div class="openscstm_inrleft">
+                @*@if (@Model.ColorwiaseCarImage == "")
+                    {
+                        <img src="/carimages/@Model.SelectedDefaultCarImage">
+                    }
+                    else
+                    {
+                        <img src="/carimages/@Model.ColorwiaseCarImage">
+                    }*@
+                <div class="openscmain">
+                    <h3> @Model.SelectedCarName</h3>
+                    <h4> @Model.CarHeadingName</h4>
+                </div>
+            </div>
+            <div class="openscstm_inrright sumpopupBtn">
+                <a href="javascript:void(0);"><img src="/common/images/closemdpopup.png"></a>
+            </div>
+        </div>
+    </div>
+    <div class="summaryInrs-flex">
+        <div class="summaryInrs-left">
+            <div class="summaryInrs-leftimg">
+                @if (@Model.ColorwiaseCarImage == "")
+                {
+                <img src="/carimages/@Model.SelectedDefaultCarImage">
+                }
+                else
+                {
+                <img src="/carimages/@Model.ColorwiaseCarImage">
+                }
+            </div>
+            <div class="summaryInrs-left-info">
+                @(await Component.InvokeAsync("BookingExShowroomPrice"))
+            </div>
+        </div>
+        <div class="summaryInrs-right">
+            <div class="summaryInrs-rightInr">
+                <div class="summaryInrs-righttop">
+                    <ul>
+                        <li>
+                            <h3><span>Powertrain</span><a class="openpower" href="#step2_1"><img src="/common/images/edit-btn.png"></a></h3>
+                            <p><span>Engine:</span><em> @Model.Engine</em></p>
+                            <p><span>Transimission:</span><em> @Model.Transimission</em></p>
+                        </li>
+                        <li>
+                            <h3><span>Variant</span><a class="openvart" href="#step2_2"><img src="/common/images/edit-btn.png"></a></h3>
+                            <p>   @Model.Varinat</p>
+                        </li>
+                        <li>
+                            <h3><span>Color</span><a class="opencolor" href="#step2_3"><img src="/common/images/edit-btn.png"></a></h3>
+                            <p>  @Model.Color <div class="sdImg" style="background-color: @Model.Color_Code;"></div></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="summaryInrs-rightbtm">
+                    <div class="offercheck">
+                        <div class="fullRowrt">
+                            <label class="checkbx-lab">
+                                @if (@Model.flag_applyfinance == "1")
+                                {
+                                <input type="checkbox" id="chkfinanace" checked="checked"><span class="checkd"></span>
+                                }
+                                else
+                                {
+                                <input type="checkbox" id="chkfinanace"><span class="checkd"></span>
+                                }
+                                <b>Apply for Finance</b>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="offercheck">
+                        <div class="fullRowrt">
+                            <label class="checkbx-lab">
+                                @if (@Model.flag_carexchange == "1")
+                                {
+                                <input type="checkbox" id="chkexchangecar" checked="checked"><span class="checkd"></span>
+                                }
+                                else
+                                {
+                                <input type="checkbox" id="chkexchangecar"><span class="checkd"></span>
+                                }
+                                <b>Exchange Car</b>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offerProceed">
+        @*<div class="offerProceedbtn">
+            @(await Component.InvokeAsync("SummaryNextButton"))         
+        </div>*@
+    </div>
+</div>

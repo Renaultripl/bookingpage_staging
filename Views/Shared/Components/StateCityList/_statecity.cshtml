@@ -1,0 +1,29 @@
+﻿
+@model LocationSelectorViewModel
+
+<form asp-action="LocationSelector" asp-controller="Home" method="post">
+    <h1 class="heading1">Select your state and city</h1>
+    <div class="slct-stt-city">
+        <div class="slctBxRt1">
+            <label>State</label>
+            <select asp-for="@Model.State" class="js-example-basic-single" asp-items="@(new SelectList(Model.States,"Value", "Text"))">
+                <option disabled selected> Select State</option>
+            </select>
+            <span id="state_error" asp-validation-for="State" class="text-danger" style="display:none;">Please select state</span>
+        </div>
+        <div class="slctBxRt1">
+            <label>City</label>
+            <select asp-for="@Model.City" class="js-example-basic-single" asp-items="Model.Cities"><option disabled selected> Select City</option></select>
+            <span id="city_error" asp-validation-for="City" class="text-danger" style="display:none;">Please select city</span>
+        </div>
+    </div>
+    @*<div class="bottombtn-bnr middBnt">*@
+    <div class="bottombtn-bnr">
+        @*<a href="#" class="btnrtCmn"><em></em>proceed to vehicle selection</a>*@
+        <button type="submit" id="btnnext" name="name" class="btnrtCmn"> <em></em>proceed to vehicle selection</button>
+        @*<input type="submit" id="btnnext" name="name" class="btnrtCmn" value="Proceed to vehicle selection" />*@
+    </div>
+</form>
+
+
+

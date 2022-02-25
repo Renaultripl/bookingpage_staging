@@ -1,0 +1,11 @@
+﻿@*@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage*@
+
+
+@using RenaultPortal.Models
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<CarInfoViewModel>
+@{
+    var PageId = Umbraco.ContentAtRoot().DescendantsOrSelf<Home>().FirstOrDefault();
+    var data = Umbraco.Content(PageId.Id);
+}
+
+@data.Name

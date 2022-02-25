@@ -1,0 +1,149 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Microsoft.AspNetCore.Mvc;
+@using RenaultPortal.Models;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>Renault</title>
+    <meta name="description" content="Renault">
+    <meta name="author" content="Renault">
+
+    <!-- Mobile Specific Metas
+      ================================================== -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- CSS
+      ================================================== -->
+    <link rel="stylesheet" href="/common/css/plugins.min.css">
+    <link href="/common/css/driver.min.css" rel="stylesheet" />
+
+    <!--[if lt IE 8]>
+           <div style=' clear: both; text-align:center; position: relative;'>
+             <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+               <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+            </a>
+          </div>
+        <![endif]-->
+    <!--[if lt IE 9]>
+            <script src="common/js/html5.js"></script>
+            <script src="common/js/css3-mediaqueries.js"></script>
+        <![endif]-->
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+
+@* the fun starts here *@
+<body class="pdBtmNormal">
+    <div class="bodyWrapper">
+        <!--Header html start-->
+        <header>
+            <div class="header">
+                <div class="containerRt">
+                    <div class="headerinr flexspac">
+                        <div class="logo">
+                            <a href="#">
+                                <span><img src="/common/images/logo.png" alt="Renault"></span>
+                                <b>Renault Book Online </b>
+                            </a>
+                        </div>
+                        @*<div class="hdrRit flexStart2">
+                                <div class="profilert">
+                                    <div class="prfticn"><img src="/common/images/profile-icon.png" alt=""></div>
+                                </div>
+                                <div class="rtselectDv blk">
+                                    <div class="selectFrm">
+                                        <select name='standard' class="js-example-basic-hide-search">
+                                            <option>Eng</option>
+                                            <option>Hindi</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--Header html start-->
+
+        <div class="contntContainer">
+            <div class="contntContainer-in">
+                @RenderBody()
+
+                <section class="cardsrt" style="display: none;">
+                    <div class="containerRt">
+                        <div class="containerRt-row">
+                            <div class="rtcol3 rtcol-md4 rtcol-sm4" style="height: 100px; background: #333;">your content</div>
+                            <div class="rtcol3 rtcol-md4 rtcol-sm4" style="height: 100px; background: #333;">your content</div>
+                            <div class="rtcol3 rtcol-md4 rtcol-sm4" style="height: 100px; background: #333;">your content</div>
+                            <div class="rtcol3 rtcol-md4 rtcol-sm4" style="height: 100px; background: #333;">your content</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        @{
+            var stepid = new Byte[20]; string result = "";
+            bool nameOK = Context.Session.TryGetValue(nameof(SessionProperties.SetpId), out stepid);
+            if (nameOK)
+            {
+                result = System.Text.Encoding.UTF8.GetString(stepid);
+            }
+        }
+        @if (result == "3")
+        {
+        <div class="summary-section" id="Summary">
+            @(await Component.InvokeAsync("Summary"))
+        </div>
+        <div class="step2_offer" id="div_offer">
+            @(await Component.InvokeAsync("Offer"))
+        </div>
+        }
+        else if (result == "4")
+        {
+        <div class="summary-section" id="Summary">
+            @(await Component.InvokeAsync("Summary"))
+        </div>
+        }
+        <!--Footer html start-->
+        <!--Footer html end-->
+        @(await Component.InvokeAsync("TermsConditions"))
+        @(await Component.InvokeAsync("PrivacyLegal"))
+        @(await Component.InvokeAsync("CookiesPolicy"))
+    </div>
+    <!-- js start...........................-->
+    @*<script type="text/javascript" src="/common/js/plugins.min.js"></script>*@
+    @*<script type="text/javascript" src="/common/js/jquery.js"></script>*@
+    <script type="text/javascript" src="/common/js//media-check.js"></script>
+    <script type="text/javascript" src="/common/js/slick.min.js"></script>
+    <script type="text/javascript" src="/common/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="/common/js/ion.rangeSlider.min.js"></script>
+    <script type="text/javascript" src="/common/js/datepicker.min.js"></script>
+    <script type="text/javascript" src="/common/js/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="/common/js/all-js.js"></script>
+ 
+    <script type="text/javascript">
+        $(".steps_carsbtn a").click(function () {
+            $(this).parents(".steps_rows").addClass("active");
+            $(this).parents(".steps_rows").siblings(".steps_rows").removeClass("active");
+        });
+
+        $(".steps_rows.active .steps_cars::after").click(function () {
+            $(this).parents(".steps_rows").removeClass("active");
+        });
+
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

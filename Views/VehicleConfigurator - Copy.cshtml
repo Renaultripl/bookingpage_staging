@@ -1,0 +1,226 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<VehicleConfigurator>
+@{
+    Layout = "RenaultMaster.cshtml";
+}
+<section>
+    <div class="steps-container">
+        <div class="containerRt">
+            <div class="container-inr">
+                <div class="steps-list">
+                    <ul>
+                        <li class="active complt">
+                            <div class="steps_blocks">
+                                <!-- <span>1</span> -->
+                                <p>Explore Cars</p>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <div class="steps_blocks">
+                                <!-- <span>2</span> -->
+                                <p>Configure car</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>3</span> -->
+                                <p>Personal/ dealer Info</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>4</span> -->
+                                <p>Preview</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="steps2_section">
+        <div class="step2_first">
+            <div class="open_cstm" id="step2_1">
+                <div class="open_cstminr">
+                    <div class="containerRt">
+                        <div class="container-inr">
+                            <div class="closeDiv"><a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a></div>
+                            <div class="open_cstmblock">
+                                <div class="open_cstmcolm">
+                                    <h2>Select Engine</h2>
+                                    @(await Component.InvokeAsync("Engine"))
+                                </div>
+                                <div class="open_cstmcolm">
+                                    <h2>Select Transimission</h2>
+                                    @(await Component.InvokeAsync("Transmission"))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="open_cstm" id="step2_2">
+                <div class="open_cstminr">
+                    <div class="containerRt">
+                        <div class="container-inr">
+                            <div class="closeDiv"><a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a></div>
+                            <div class="open_cstmblock">
+                                <div class="open_cstmcolm">
+                                    <h2>Select Variant</h2>
+                                    <ul id="Variant">
+                                        @(await Component.InvokeAsync("Variant"))
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="open_cstm" id="step2_3">
+                <div class="open_cstminr">
+                    <div class="containerRt">
+                        <div class="container-inr">
+                            <div class="closeDiv"><a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a></div>
+                            <div class="open_cstmblock">
+                                <div class="open_cstmcolm">
+                                    <h2>Select Color</h2>
+                                    @(await Component.InvokeAsync("Color"))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="containerRt">
+                <div class="container-inr">
+                    <div class="step2cars-section">
+                        @(await Component.InvokeAsync("VCSelectedCarImgCity"))
+                        <div class="step2cars_colors" id="ColorWiseImages">
+                            @(await Component.InvokeAsync("ColorWiseImages"))
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step2_second">
+            <div class="step2_secondinr">
+                <div class="step2_secondinr-flex">
+                    <ul>
+                        <li>
+                            <a class="opencar_link" href="#step2_1">Powertrain</a>
+                        </li>
+                        <li>
+                            <a class="opencar_link" href="#step2_2">Variant</a>
+                        </li>
+                        <li>
+                            <a class="opencar_link" href="#step2_3">Color</a>
+                        </li>
+                        <!-- <li>
+                          <a class="opencar_link" href="#step2_4"
+                            >Accessories</a
+                          >
+                        </li>
+                        <li>
+                          <a class="opencar_link" href="#step2_5"
+                            >Service Pack</a
+                          >
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="step2_secondbtm">
+                    <div class="step2_secondbtm_inr">
+                        <div class="step2_secondbtm_left" id="BookingExShowroomPrice">
+                            @(await Component.InvokeAsync("BookingExShowroomPrice"))
+                        </div>
+                        <div class="step2_secondbtm_right">
+                            <div class="step2_secondbtm_leftinfo"><em class="ofrpopup"><img src="common/images/view-offer.png"></em><em class="sumpopup"><img src="common/images/offer-info.png"></em></div>
+                            <div class="step2_secondbtm_leftbtn">
+                                <a href="javascript:void(0);" class="go_nextbtn">Next</a>
+                                <a href="javascript:void(0);" class="go_nextbtnobs" id="x-call-summary">Summary</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="step2_offer">
+        <div class="step2_offerinr">
+            <div class="step2_offerinr-left">
+                <span>Offers :</span>
+                <em>Specail Loyalty Benefits Upto INR 10,000 #, Corporate Discount of upto INR 10,000 / Special offer for rural customers#</em>
+            </div>
+            <div class="step2_offerinr-right">
+                <a href="javascript:void(0);"><img src="common/images/offer-cross.png"></a>
+            </div>
+        </div>
+    </div>
+    <div class="summary-section">
+        <div class="summaryInrs">
+            <div class="sumpopupBtn">
+                <a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a>
+            </div>
+            <div class="summaryInrs-flex">
+                <div class="summaryInrs-left">
+                    <div class="summaryInrs-leftimg">
+                        <img src="common/images/kiger.png">
+                    </div>
+                    <div class="summaryInrs-left-info">
+                        <p>Booking Amount: <span>₹ 21,000</span></p>
+                        <p>Ex-Showroom Amount: <span>₹ 51,000</span></p>
+                    </div>
+                </div>
+                <div class="summaryInrs-right">
+                    <div class="summaryInrs-rightInr">
+                        <div class="summaryInrs-righttop">
+                            <ul>
+                                <li>
+                                    <h3>Powertrain</h3>
+                                    <p><span>Engine:</span><em>1.0L Energy</em></p>
+                                    <p><span>Transimission:</span><em>1.0L Energy: AMT and Manual</em></p>
+                                </li>
+                                <li>
+                                    <h3>Variant</h3>
+                                    <p>RXE MT MY21</p>
+                                </li>
+                                <li>
+                                    <h3>Color</h3>
+                                    <p>Pearl Blue <div class="sdImg" style="background-color: blue;"></div></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="summaryInrs-rightbtm">
+                            <div class="offercheck">
+                                <div class="fullRowrt">
+                                    <label class="checkbx-lab">
+                                        <input type="checkbox"><span class="checkd"></span>
+                                        <b>Apply for Finance</b>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="offercheck">
+                                <div class="fullRowrt">
+                                    <label class="checkbx-lab">
+                                        <input type="checkbox"><span class="checkd"></span>
+                                        <b>Exchange Car</b>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="offerProceed">
+                <div class="offerProceedbtn">
+                    <button class="cmnBtnSumbmit cmnBtncs"><div class="Button__content">Submit</div></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/myscript/vehicleconfigurator.js"></script>
+}

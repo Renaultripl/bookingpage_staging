@@ -1,0 +1,28 @@
+﻿
+<div id="map" style="height:300px"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3KSW6PRAtNPeQ6Lw2zeIXGK6wE40_yKU&callback=initMap"
+		async defer></script>
+
+<script>
+	function initMap() {
+		var latitude = Number(getParameterByName('lat'));
+		var longitude = Number(getParameterByName('long'));
+		alert(latitude);
+		var macc = { lat: latitude, lng: longitude };
+		var map = new google.maps.Map(
+			document.getElementById('map'), { zoom: 15, center: macc });
+		var marker = new google.maps.Marker({ position: macc, map: map });
+	}
+</script>
+
+<script>
+	function getParameterByName(name) {
+		name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			results = regex.exec(location.search);
+		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+</script>
+
+

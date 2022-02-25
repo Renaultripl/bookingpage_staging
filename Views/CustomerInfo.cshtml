@@ -1,0 +1,11 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using RenaultPortal.Models;
+@{
+    Layout = "Master.cshtml";
+    var data = new CarInfoViewModel();
+}
+
+@* the fun starts here *@
+
+@await Html.PartialAsync("_customerinfodetails", data)

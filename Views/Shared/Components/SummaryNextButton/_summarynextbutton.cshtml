@@ -1,0 +1,18 @@
+﻿@using RenaultPortal.Models;
+
+@{
+    var stepid = new Byte[20]; string tabid = "";
+    bool sessionOK = Context.Session.TryGetValue(nameof(SessionProperties.SetpId), out stepid);
+    if (sessionOK)
+    {
+        tabid = System.Text.Encoding.UTF8.GetString(stepid);
+    }
+}
+@if (tabid == "3")
+{
+    <button class="cmnBtnSumbmit cmnBtncs" id="btn_vcsummarynextbutton"><div class="Button__content">Submit</div></button>
+}
+@if (tabid == "4")
+{
+    <button class="cmnBtnSumbmit cmnBtncs" id="btn_vcregistrationnextbutton"><div class="Button__content">Submit</div></button>
+}

@@ -1,0 +1,14 @@
+﻿@using RenaultPortal.Models
+@model ColorWiseCarImgCarVarinatName
+<div class="lftNme">
+    <h1 class="heading1">@Model.car_name <em>(@Model.variant_name)</em></h1>
+    <div class="subHd-txt">@Model.car_heading</div>
+</div>
+<div class="imgbRt">
+    <picture>
+        <source media="(max-width: 767px)" srcset="/carimages/@Model.colorwise_carimg" type="image/webp">
+        <source media="(max-width: 767px)" srcset="/carimages/@Model.colorwise_carimg" type="image/jpeg">
+        <source srcset="/carimages/@Model.colorwise_carimg" type="image/webp">
+        <img data-aos="fade-in" src="/carimages/@Model.colorwise_carimg" alt="" />
+    </picture>
+</div>  

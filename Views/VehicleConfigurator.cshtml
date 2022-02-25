@@ -1,0 +1,327 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<VehicleConfigurator>
+@{
+    Layout = "RenaultConfiguratorMaster.cshtml";
+}
+
+<section>
+    <div class="steps-container">
+        <div class="containerRt">
+            <div class="container-inr">
+                <div class="steps-list">
+                    <ul>
+                        <li class="active complt">
+                            <div class="steps_blocks">
+                                <!-- <span>1</span> -->
+                                <p>Explore Cars</p>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <div class="steps_blocks">
+                                <!-- <span>2</span> -->
+                                <p>Configure car</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>3</span> -->
+                                <p>Personal/ dealer Info</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="steps_blocks">
+                                <!-- <span>4</span> -->
+                                <p>Preview</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="steps2_section">
+        <div class="step2_first">
+            <div class="open_cstm" id="step2_1">
+                <div class="opensctm_Block">
+                    <div class="openscstm_inr">
+                        <div class="openscstm_inrleft">
+                            @(await Component.InvokeAsync("CarNameCarImg"))
+                        </div>
+                        <div class="openscstm_inrright">
+                            <a href="javascript:void(0);"><img src="/common/images/closemdpopup.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="open_cstminr">
+                    <div class="containerRt">
+                        <div class="container-inr">
+                            <!-- <div class="closeDiv"><a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a></div> -->
+                            <div class="open_cstmblock">
+                                <div class="open_cstmcolm">
+                                    <h2>Select Engine</h2>
+                                    @(await Component.InvokeAsync("Engine"))
+                                </div>
+                                <div class="open_cstmcolm">
+                                    <h2>Select Transimission</h2>
+                                    @(await Component.InvokeAsync("Transmission"))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="open_cstm" id="step2_2">
+                <div class="opensctm_Block">
+                    <div class="openscstm_inr">
+                        <div class="openscstm_inrleft">
+                            @(await Component.InvokeAsync("CarNameCarImg"))
+                        </div>
+                        <div class="openscstm_inrright">
+                            <a href="javascript:void(0);"><img src="/common/images/closemdpopup.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="open_cstminr">
+                    <div class="containerRt">
+                        <div class="container-inr">
+                            <!-- <div class="closeDiv"><a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a></div> -->
+                            <div class="open_cstmblock">
+                                <div class="open_cstmcolm">
+                                    <h2>Select Variant</h2>
+                                    <div class="dvflex">
+                                        <ul id="Variant">
+                                            @(await Component.InvokeAsync("Variant"))
+                                        </ul>
+                                        <div class="vhighlights">
+                                            <h2>Highlights</h2>
+                                            <ul id="variant_highlights">
+                                                @(await Component.InvokeAsync("VarinatHighlights"))
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="open_cstm" id="step2_3">
+                <div class="opensctm_Block">
+                    <div class="openscstm_inr">
+                        <div class="openscstm_inrleft">
+                            @(await Component.InvokeAsync("CarNameCarImg"))
+                        </div>
+                        <div class="openscstm_inrright">
+                            <a href="javascript:void(0);"><img src="/common/images/closemdpopup.png"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="open_cstminr">
+                    <div class="containerRt">
+                        <div class="container-inr">
+                            <!-- <div class="closeDiv"><a href="javascript:void(0);"><img src="common/images/closemdpopup.png"></a></div> -->
+                            <div class="open_cstmblock">
+                                <div class="open_cstmcolm">
+                                    <h2>Select Color</h2>
+                                    <ul id="Color">
+                                        @(await Component.InvokeAsync("Color"))
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="containerRt">
+                <div class="container-inr">
+                    <div class="step2cars-section">
+                        <div class="backPg"><a href="/vehicle-selector"><span></span> Back</a></div>
+                        @(await Component.InvokeAsync("VCSelectedCarImgCity"))
+                        <div class="prev-flexDiv">
+                            <div class="step2cars_colors" id="ColorWiseImages">
+                                @(await Component.InvokeAsync("ColorWiseImages"))
+                            </div>
+                            <div class="ftr-links rtcol7 rtcol-md5 rtcol-sm4">
+                                <ul class="flexStart">
+                                    <li><a class="pnl" href="javascript:void(0);">privacy and legal</a></li>
+                                    <li><a class="tac" href="javascript:void(0);">terms and conditions</a></li>
+                                    <li><a class="cp" href="javascript:void(0);">cookie policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="prevDisclaimer">
+                            <p><strong>Disclaimer:</strong> Car image is for representation purpose, actual model may vary basis variant preference.</p>
+                            <!-- <p><a href="javascript:void(0);" class="emiBtn">EMI Button</a></p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="step2_second">
+            <div class="step2_secondinr">
+                <div class="step2_secondinr-flex">
+                    <ul>
+                        <li>
+                            <a class="opencar_link" id="powertrain" href="#step2_1">Powertrain</a>
+                        </li>
+                        <li>
+                            <a class="opencar_link" id="variant" href="#step2_2">Variant</a>
+                        </li>
+                        <li>
+                            <a class="opencar_link" id="colorauto" href="#step2_3">Color</a>
+                        </li>
+                    </ul>
+                </div>
+                @*call footer view component*@
+                <div class="step2_secondbtm">
+                    <div class="step2_secondbtm_inr">
+                        <div class="step2_secondbtm_left" id="BookingExShowroomPrice">
+                            @(await Component.InvokeAsync("BookingExShowroomPrice"))
+                        </div>
+                        <div class="step2_secondbtm_right">
+                            <div class="step2_secondbtm_leftinfo"><em id="ofrpopup" class="ofrpopup"><img src="/common/images/view-offer.png"></em><em class="sumpopup" id="sumpopup"><img src="common/images/offer-info.png"></em></div>
+                            <div class="step2_secondbtm_leftbtn">
+                                @*<a href="javascript:void(0);" class="go_nextbtn"><em></em>Next</a>*@
+                                <button class="cmnBtnSumbmit cmnBtncs go_nextbtn"><div class="Button__content">Next</div></button>
+                                <a href="javascript:void(0);" class="go_nextbtnobs" id="x-call-summary">Summary</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*end call footer view component*@
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="/myscript/vehicleconfigurator.js"></script>
+    <script src="/myscript/summary.js"></script>
+    <script src="/common/js/driver.min.js"></script>
+    <script>
+        const driver = new Driver({
+            opacity: 0.75,
+            padding: 0,
+            allowClose: false,
+            showButtons: true,
+        });
+
+        function DriverFordesktop() {
+            // Define the steps for introduction
+            driver.defineSteps([
+                {
+                    element: '#powertrain',
+                    popover: {
+                        className: 'first-step-popover-class',
+                        title: 'Tap to Select the Engine and Transmission',
+                        //description: 'Tap to Select the Engine and Transmission',
+                        position: 'top'
+                    }
+                },
+                {
+                    element: '#variant',
+                    popover: {
+                        title: 'Tap to Select Variant',
+                        //description: 'Tap to Select Variant',
+                        position: 'top'
+                    }
+                },
+                {
+                    element: '#colorauto',
+                    popover: {
+                        title: 'Tap to Select Color',
+                        //description: 'Tap to Select Color',
+                        position: 'top'
+                    }
+                },
+                {
+                    element: '#ofrpopup',
+                    popover: {
+                        title: 'Tap to Select Offer',
+                        //description: 'Tap to view Offer',
+                        position: 'top-right'
+                    }
+                },
+                {
+                    element: '#sumpopup',
+                    popover: {
+                        title: 'Tap to view Summary',
+                        //description: 'Tap to view Summary',
+                        position: 'top-right'
+                    }
+                }
+            ]);
+
+        }
+
+        function DriverFormobile() {
+
+            // Define the steps for introduction
+            driver.defineSteps([
+                {
+                    element: '#powertrain',
+                    popover: {
+                        className: 'first-step-popover-class',
+                        title: 'Tap to Select the Engine and Transmission',
+                        //description: 'Body of the popover',
+                        position: 'top',
+                        offset: 30
+                    }
+                },
+                {
+                    element: '#variant',
+                    popover: {
+                        title: 'Tap to Select Variant',
+                        //description: 'Body of the popover',
+                        position: 'top-center'
+                    }
+                },
+
+                {
+                    element: '#Color',
+                    popover: {
+                        title: 'Tap to Select Color',
+                        //description: 'Body of the popover',
+                        position: 'top-right',
+                        offset: -30
+                    }
+                },
+                {
+                    element: '#ofrpopup',
+                    popover: {
+                        title: 'Tap to view Offer',
+                        //description: 'Body of the popover',
+                        position: 'top-right',
+                        offset: 10
+                    }
+                },
+                {
+                    element: '#sumpopup',
+                    popover: {
+                        title: 'Tap to view Summary',
+                        //description: 'Body of the popover',
+                        position: 'top-right'
+                    }
+                }
+            ]);
+        }
+        // Start the introduction
+        mediaCheck({
+            media: '(max-width: 640px)',
+            entry: function () {
+                driver.reset();
+                DriverFormobile();
+                driver.start();
+            },
+            exit: function () {
+                driver.reset();
+                DriverFordesktop();
+                driver.start();
+            }
+        });
+    </script>
+
+}

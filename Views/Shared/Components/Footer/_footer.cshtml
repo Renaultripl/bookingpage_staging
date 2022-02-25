@@ -1,0 +1,49 @@
+﻿@using RenaultPortal.Models;
+@{
+    var stepid = new Byte[20]; string tabid = "";
+    bool sessionOK = Context.Session.TryGetValue(nameof(SessionProperties.SetpId), out stepid);
+    if (sessionOK)
+    {
+        tabid = System.Text.Encoding.UTF8.GetString(stepid);
+    }
+}
+@if (tabid == "3")
+{
+    <div class="step2_secondbtm">
+        <div class="step2_secondbtm_inr">
+            <div class="step2_secondbtm_left" id="BookingExShowroomPrice">
+                @(await Component.InvokeAsync("BookingExShowroomPrice"))
+            </div>
+            <div class="step2_secondbtm_right">
+                <div class="step2_secondbtm_leftinfo"><em class="ofrpopup"><img src="/common/images/view-offer.png"></em><em class="sumpopup"><img src="/common/images/offer-info.png"></em></div>
+                <div class="step2_secondbtm_leftbtn">
+                    <!-- <a href="javascript:void(0);" class="go_nextbtn"><em></em>Next</a> -->
+                    <button class="cmnBtnSumbmit cmnBtncs go_nextbtn"><div class="Button__content">Next</div></button>
+                    <a href="javascript:void(0);" class="go_nextbtnobs" id="x-call-summary">Summary</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if (tabid == "4")
+{
+    <div class="steps2_section">
+        <div class="step2_second">
+            <div class="step2_secondinr">
+                <div class="step2_secondbtm">
+                    <div class="step2_secondbtm_inr">
+                        <div class="step2_secondbtm_left">
+                            @(await Component.InvokeAsync("BookingExShowroomPrice"))
+                        </div>
+                        <div class="step2_secondbtm_right">
+                            <div class="step2_secondbtm_leftinfo"><em class="sumpopup"><img src="/common/images/offer-info.png"></em></div>
+                            <div class="step2_secondbtm_leftbtn">
+                                <button class="btnrtCmn yellbtn" type="submit" name="Registration" id="Registration" tabindex="18">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
